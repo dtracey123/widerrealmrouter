@@ -6,6 +6,8 @@ A simple fast router built for web applications and APIs.
 
 To install
 
+*If you really want to use this router you need to setup a local composer package to install it on different projects, but i highly recommend against doing so as it's abandoned.*
+
 `composer require widerrealm/widerrealm-router`
 
 Basic Setup
