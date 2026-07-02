@@ -1,0 +1,37 @@
+{
+    "name": "widerrealm/router",
+    "description": "Router and Route Requirement System.",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Widerrealm",
+            "email": "mail@widerrealm.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Widerrealm\\Router\\": "./"
+        }
+    },
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "codeception/codeception": "^5.0.5",
+        "codeception/module-asserts": "^3.0",
+        "codeception/module-phpbrowser": "*",
+        "codeception/module-rest": "^3.3.0"
+    },
+    "scripts": {
+        "build": [
+            "composer dump-autoload --optimize"
+        ],
+        "test": [
+            "php vendor/bin/codecept run"
+        ],
+        "test-steps": [
+            "php vendor/bin/codecept run --steps"
+        ]
+    }
+}

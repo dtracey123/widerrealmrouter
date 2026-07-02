@@ -1,0 +1,37 @@
+Header always set Access-Control-Allow-Origin "*"
+Header always set Access-Control-Allow-Methods "POST, GET, DELETE, PUT, PATCH, OPTIONS"
+Header always set Access-Control-Max-Age "1000"
+Header always set Access-Control-Allow-Headers "x-requested-with, Content-Type, origin, authorization, accept, client-security-token"
+
+Options +FollowSymLinks
+# Remove Indexes
+Options -Indexes
+
+<IfModule mod_rewrite.c> 
+    RewriteEngine On
+    RewriteBase /
+
+    # Deliver the folder directly if it exists on the server
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    # Enable COORS by returning 200 when the request is OPTIONS
+    RewriteCond %{REQUEST_METHOD} OPTIONS
+    RewriteRule ^(.*)$ $1 [R=200,L]
+    # Deliver the file directly if it exists on the server
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Push every request to index.php
+    RewriteRule ^(.*)$ index.php [QSA]
+</IfModule>
+
+# Deny direct access to all PHP & server config files.
+<Files ~ "\.(php|htaccess|env|conf)$">  
+    Order Allow,Deny 
+    Deny from all 
+</Files>
+
+# Allow direct access to index.php
+<Files ~ "index.php$">  
+    Order allow,deny
+    Allow from all
+</Files>
